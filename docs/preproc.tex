@@ -1,0 +1,51 @@
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{tikz}
+
+\newcommand{\placeholder}[2][]{\ifthenelse{ \equal{#1}{} }
+                                     {\color{blue}#2}
+                                     {\color{blue}#2 \cdot #1}}
+\newcommand{\ifexpr}[1]{{\bf if\enspace}#1\enspace}
+\newcommand{\when}{{\enspace\bf when\enspace}}
+\newcommand{\otherwise}{{\enspace\bf otherwise}}
+\newcommand{\while}[1]{{\bf while\enspace}#1\enspace}
+\newcommand{\true}{true}
+\newcommand{\false}{false}
+\newcommand{\abs}[1]{|#1|}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\newenvironment{preproc}
+{\color{red}\begin{equation*}\begin{array}{l}}
+{\end{array}\end{equation*}}
+
+\newenvironment{block}
+{\begin{array}{|l}}
+{\end{array}}
+
+\newenvironment{caseblock}
+{\begin{array}{|l}}
+{\end{array}}
+
+\newcommand{\range}[3][]{%
+	\ifthenelse{\isempty{#1}}{[#2:#3]}{[#2:#3:#1]}%
+}
+
+\newcommand{\graphic}[3]{
+\color{blue}
+\begin{tikzpicture}
+\begin{axis}[
+	xmajorgrids,
+	ymajorgrids,
+	axis lines=middle,
+	x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+	ylabel style={above left},
+	xlabel=\text{#1(#2)},
+]
+\addplot[thin, mark = none] coordinates{
+	#3
+};
+\end{axis}
+\end{tikzpicture}}
